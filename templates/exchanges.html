@@ -1,0 +1,70 @@
+{% include 'navbar.html' %}
+
+{% block content %}
+<style>
+#exchanges {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#exchanges td, #exchanges th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#exchnages tr:nth-child(even){background-color: #f2f2f2;}
+
+#exchanges tr:hover {background-color: #ddd;}
+
+#exchanges th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #87CEFA;
+  color: white;
+
+}
+h3 {
+	font-size: 40px;
+	color: white;
+}
+</style>
+
+<div class="container">
+	<div class="row" style="background-color: #6495ED; margin-bottom: 20px; width: 100%">
+		<div class="col-md-4">
+			<h2><b># of Exchanges:</b></h2>
+			<h3 style="padding-left: 30px">73</h3>
+		</div>
+		<div class="col-md-4">
+			<h2><b>Total Exchange Volume:</b></h2>
+			<h3>${{total_vol}}B</h3>
+		</div>
+		<div class="col-md-4" style="text-align: center">
+			<img style="width: 200px; height: 150px" src="https://www.logo.wine/a/logo/Binance/Binance-Vertical2-Dark-Background-Logo.wine.svg">
+		</div>
+	</div>
+
+	<table id="exchanges">
+		<tr>
+    		<th>Exchange</th>
+    		<th>Pairs</th>
+    		<th>Total %</th>
+			<th>
+				<form action="/exchanges" method="POST">
+    				<input class="btn btn-default" style="margin-top: 7px" type="submit" value="Rank" name="reverse_ex">
+				</form>
+    		</th>
+  		</tr>
+		{% for exchange in exchanges %}
+			<tr>
+				<td><a href="{{ exchange.site }}">{{ exchange.name }}</a></td>
+				<td> {{ exchange.pairs }} </td>
+				<td> {{ exchange.percent_vol }} </td>
+				<td> {{ exchange.rank }} </td>
+			</tr>
+		{% endfor %}
+	</table>
+</div>
+{% endblock %}

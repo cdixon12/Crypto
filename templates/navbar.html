@@ -1,0 +1,16 @@
+{% extends 'bootstrap/base.html' %}
+
+{% block content %}
+<nav class="navbar navbar-default">
+	<a class="navbar-brand" href="/">Home</a>
+	<form class="form-inline" action="/trends" method="POST">
+    	<input class="form-control mr-sm-2" style="margin-top: 7px; width: 300px" type="text" name="n" placeholder="# Winners/Losers on Trends Page" aria-label="# Winners/Losers on Trends Page">
+    	<button class="btn btn-default" style="margin-top: 7px" type="submit">Submit</button>
+		<div class="navbar-right" style="padding-right:40px">
+        	<a class="navbar-brand" href="/trends">Trends</a>
+        	<a class="navbar-brand" href="/exchanges">Exchanges</a>
+        	<a class="navbar-brand" href="/coins">Coins</a>
+		</div>
+  	</form>
+</nav>
+{% endblock %}

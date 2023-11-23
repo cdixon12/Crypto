@@ -1,0 +1,70 @@
+{% include 'navbar.html' %}
+
+{% block content %}
+<style>
+#coins {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#coins td, #coins th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#coins tr:nth-child(even){background-color: #f2f2f2;}
+
+#coins tr:hover {background-color: #ddd;}
+
+#coins th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #87CEFA;
+  color: white;
+
+}
+h3 {
+	font-size: 40px;
+	color: white;
+}
+</style>
+
+<div class="container">
+	<div class="row" style="background-color: #6495ED; margin-bottom: 20px; width: 100%">
+		<div class="col-md-4">
+			<h2><b># of Coins:</b></h2>
+			<h3 style="padding-left: 30px">100</h3>
+		</div>
+		<div class="col-md-4">
+			<h2><b>Total Market Cap:</b></h2>
+			<h3>${{total_mc}}T</h3>
+		</div>
+		<div class="col-md-4" style="text-align: center">
+			<img style="width: 200px; height: 150px" src="https://st3.depositphotos.com/15237386/33975/i/600/depositphotos_339750616-stock-photo-gold-bitcoin-crypto-currency-on.jpg">
+		</div>
+	</div>
+
+	<table id="coins">
+		<tr>
+    		<th>Coin</th>
+    		<th>Price</th>
+    		<th>Market Cap</th>
+			<th>
+				<form action="/coins" method="POST">
+    				<input class="btn btn-default" style="margin-top: 7px" type="submit" value="Rank" name="reverse_c">
+				</form>
+    		</th>
+  		</tr>
+		{% for coin in coins %}
+			<tr>
+				<td><a href="{{ coin.site }}">{{ coin.name }} ({{ coin.symbol }})</a></td>
+				<td> {{ coin.price }} </td>
+				<td> {{ coin.market_cap }} </td>
+				<td> {{ coin.rank }} </td>
+			</tr>
+		{% endfor %}
+	</table>
+</div>
+{% endblock %}

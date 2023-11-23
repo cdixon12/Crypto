@@ -1,0 +1,82 @@
+{% include 'navbar.html' %}
+
+{% block content %}
+<style>
+#coins {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#coins td, #coins th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#coins tr:nth-child(even){background-color: #f2f2f2;}
+
+#coins tr:hover {background-color: #ddd;}
+
+#coins th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  color: white;
+
+}
+h3 {
+	font-size: 40px;
+	color: white;
+}
+</style>
+
+<div class="container">
+	<div class="row" style="background-color: #6495ED; margin-bottom: 20px; width: 100%">
+		<div class="col-md-4">
+			<h1><b>Top {{ n }} Winners:</b></h1>
+		</div>
+		<div class="col-md-4" style="text-align: right">
+			<img style="width: 600px; height: 150px" src="https://www.etftrends.com/wp-content/uploads/2020/01/Why-History%E2%80%99s-Longest-Bull-Market-Is-Just-Getting-Started.jpg">
+		</div>
+	</div>
+
+	<table id="coins">
+		<tr style="background-color: #50C878">
+    		<th>Coin</th>
+    		<th>Price</th>
+    		<th>% Change</th>
+  		</tr>
+		{% for coin in winners %}
+			<tr>
+				<td><a href="{{ coin.site }}">{{ coin.name }} ({{ coin.symbol }})</a></td>
+				<td> {{ coin.price }} </td>
+				<td> {{ coin.percent_change }} </td>
+			</tr>
+		{% endfor %}
+	</table>
+
+	<div class="row" style="background-color: #6495ED; margin-bottom: 20px; margin-top: 20px; width: 100%">
+		<div class="col-md-4">
+			<h1><b>Top {{ n }} Losers:</b></h1>
+		</div>
+		<div class="col-md-4" style="text-align: right">
+			<img style="width: 600px; height: 150px" src="https://cdn.gobankingrates.com/wp-content/uploads/2022/06/iStock-1386847296-1.jpg">
+		</div>
+	</div>
+
+	<table id="coins">
+		<tr style="background-color: #D0312D">
+    		<th>Coin</th>
+    		<th>Price</th>
+    		<th>% Change</th>
+  		</tr>
+		{% for coin in losers %}
+			<tr>
+				<td><a href="{{ coin.site }}">{{ coin.name }} ({{ coin.symbol }})</a></td>
+				<td> {{ coin.price }} </td>
+				<td> {{ coin.percent_change }} </td>
+			</tr>
+		{% endfor %}
+	</table>
+</div>
+{% endblock %}
